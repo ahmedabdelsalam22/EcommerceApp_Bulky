@@ -7,10 +7,13 @@ using System.Threading.Tasks;
 
 namespace Ecommerce_Bulky.Models.Dtos
 {
-    public class CategoryDto
+    public class CategoryCreateDto
     {
-        public int Id { get; set; }
+        [Required]
+        [MaxLength(30)]
         public string Name { get; set; }
-        public string DiplayOrder { get; set; }
+        [Required]
+        [Range(1,100)]
+        public int DisplayOrder { get; set; }
     }
 }
