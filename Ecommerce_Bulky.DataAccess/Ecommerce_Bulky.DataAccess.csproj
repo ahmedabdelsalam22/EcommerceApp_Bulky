@@ -23,8 +23,4 @@
     <ProjectReference Include="..\Ecommerce_Bulky.Models\Ecommerce_Bulky.Models.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="RepositoryPattern\Repository\" />
-  </ItemGroup>
-
 </Project>
