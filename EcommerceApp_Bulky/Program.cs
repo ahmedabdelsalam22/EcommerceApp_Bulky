@@ -1,6 +1,7 @@
 using Ecommerce_Bulky.DataAccess;
 using Ecommerce_Bulky.DataAccess.RepositoryPattern.IRepository;
 using Ecommerce_Bulky.DataAccess.RepositoryPattern.Repository;
+using Ecommerce_Bulky.Utility;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +16,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(option=>option.UseSqlServer(
 
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+builder.Services.AddAutoMapper(typeof(MappingConfig));
 
 var app = builder.Build();
 
