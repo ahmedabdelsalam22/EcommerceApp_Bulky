@@ -24,6 +24,7 @@
                 <th>Name</th>
                 <th>Display Order</th>
                 <th>Update</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -35,6 +36,9 @@
                     <td>@m.DiplayOrder</td>
                     <td>
                         <a asp-action="Update" class="btn btn-primary" asp-route-id="@m.Id">Update</a>
+                    </td>
+                    <td>
+                        <a asp-action="Delete" class="btn btn-danger" asp-route-id="@m.Id">Delete</a>
                     </td>
                 </tr>
             }
