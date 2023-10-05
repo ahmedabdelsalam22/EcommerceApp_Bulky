@@ -67,5 +67,13 @@ namespace EcommerceApp_Bulky.Web.Controllers
             }
             return View(dto);
         }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            Category category = await _unitOfWork.categoryRepository.GetByIdAsync(filter: x => x.Id == id);
+            _unitOfWork.categoryRepository.Remove(category);
+            await _unitOfWork.Save();
+            return RedirectToAction("Index");
+        }
     }
 }
