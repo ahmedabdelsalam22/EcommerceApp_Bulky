@@ -1,4 +1,6 @@
 using Ecommerce_Bulky.DataAccess;
+using Ecommerce_Bulky.DataAccess.RepositoryPattern.IRepository;
+using Ecommerce_Bulky.DataAccess.RepositoryPattern.Repository;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +12,8 @@ builder.Services.AddControllersWithViews();
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 builder.Services.AddDbContext<ApplicationDbContext>(option=>option.UseSqlServer(connectionString:connectionString));
+
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 
 var app = builder.Build();
 
