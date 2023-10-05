@@ -7,6 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.11">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Ecommerce_Bulky.DataAccess\Ecommerce_Bulky.DataAccess.csproj" />
     <ProjectReference Include="..\Ecommerce_Bulky.Models\Ecommerce_Bulky.Models.csproj" />
     <ProjectReference Include="..\Ecommerce_Bulky.Utility\Ecommerce_Bulky.Utility.csproj" />
   </ItemGroup>
