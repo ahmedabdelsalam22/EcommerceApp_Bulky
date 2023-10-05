@@ -1,11 +1,16 @@
 ﻿@using Ecommerce_Bulky.Models.Dtos;
-@model CategoryCreateDto
+@model CategoryUpdateDto
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
 @{
-    ViewData["Title"] = "Create";
 }
 
 <form method="post">
-
+    <div class="m-1">
+        <label>Id</label>
+        <input disabled type="text" asp-for="Id" class="form-control" />
+    </div>
     <div class="m-1">
         <label>Name</label>
         <input type="text" asp-for="Name" class="form-control" />
@@ -17,8 +22,9 @@
         <span asp-validation-for="DisplayOrder" class="text-danger"></span>
     </div>
     <div class="mt-2 m-1">
-        <button type="submit" asp-action="Create" class="btn btn-primary">Create</button>
+        <button type="submit" asp-action="Update" class="btn btn-primary">Update</button>
         <button asp-action="Index" class="btn btn-secondary">Back</button>
     </div>
 </form>
+
 

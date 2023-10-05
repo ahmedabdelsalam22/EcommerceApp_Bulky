@@ -2,6 +2,7 @@
 using Ecommerce_Bulky.DataAccess.RepositoryPattern.IRepository;
 using Ecommerce_Bulky.Models.Dtos;
 using EcommerceApp_Bulky.Models;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EcommerceApp_Bulky.Web.Controllers
@@ -43,6 +44,28 @@ namespace EcommerceApp_Bulky.Web.Controllers
                 return RedirectToAction("Index");
             }
             return View(createDto);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Update(int id) 
+        {
+            Category category = await _unitOfWork.categoryRepository.GetByIdAsync(filter: x => x.Id == id);
+
+            CategoryUpdateDto categoryUpdateDto = _mapper.Map<CategoryUpdateDto>(category);
+            return View(categoryUpdateDto);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Update(CategoryUpdateDto dto) 
+        {
+            if (ModelState.IsValid)
+            {
+                Category categoryToDb = _mapper.Map<Category>(dto);
+
+                _unitOfWork.categoryRepository.Update(categoryToDb);
+                await _unitOfWork.Save();
+                return RedirectToAction("Index");
+            }
+            return View(dto);
         }
     }
 }
