@@ -16,5 +16,10 @@ namespace Ecommerce_Bulky.DataAccess.RepositoryPattern.Repository
             categoryRepository = new CategoryRepository(_context);
         }
         public ICategoryRepository categoryRepository { get; private set; }
+
+        public async Task Save() 
+        {
+            await _context.SaveChangesAsync();
+        }
     }
 }

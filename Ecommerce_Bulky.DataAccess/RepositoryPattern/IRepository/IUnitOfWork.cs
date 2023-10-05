@@ -9,5 +9,7 @@ namespace Ecommerce_Bulky.DataAccess.RepositoryPattern.IRepository
     public interface IUnitOfWork
     {
         ICategoryRepository categoryRepository { get; }
+
+        Task Save();
     }
 }

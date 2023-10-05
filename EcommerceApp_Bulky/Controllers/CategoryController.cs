@@ -25,5 +25,24 @@ namespace EcommerceApp_Bulky.Web.Controllers
 
             return View(categoriesDtos);
         }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Create(CategoryCreateDto createDto) 
+        {
+            if (ModelState.IsValid) 
+            {
+                Category categoryToDb = _mapper.Map<Category>(createDto);
+
+                await _unitOfWork.categoryRepository.CreateAsync(categoryToDb);
+                await _unitOfWork.Save();
+                return RedirectToAction("Index");
+            }
+            return View(createDto);
+        }
     }
 }

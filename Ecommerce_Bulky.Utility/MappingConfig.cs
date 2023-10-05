@@ -14,6 +14,7 @@ namespace Ecommerce_Bulky.Utility
         public MappingConfig()
         {
             CreateMap<Category, CategoryDto>();
+            CreateMap<CategoryCreateDto, Category>();
         }
     }
 }
