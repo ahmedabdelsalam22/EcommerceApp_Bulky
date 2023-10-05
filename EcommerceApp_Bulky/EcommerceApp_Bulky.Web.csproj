@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Ecommerce_Bulky.Models\Ecommerce_Bulky.Models.csproj" />
+    <ProjectReference Include="..\Ecommerce_Bulky.Utility\Ecommerce_Bulky.Utility.csproj" />
+  </ItemGroup>
+
+</Project>
