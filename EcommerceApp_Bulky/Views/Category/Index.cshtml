@@ -1,1 +1,38 @@
-﻿<p>category</p>
+﻿@using Ecommerce_Bulky.Models.Dtos;
+@model IEnumerable<CategoryDto>
+
+<div>
+
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Category List</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Category" asp-action="Create" class="btn btn-primary">
+                Create New Category
+            </a>
+        </div>
+    </div>
+
+    <br />
+
+
+    <table class="table table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var m in Model)
+            {
+                <tr>
+                    <td>@m.Id</td>
+                    <td>@m.Name</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
