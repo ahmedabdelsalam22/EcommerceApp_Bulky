@@ -9,7 +9,7 @@
         </div>
         <div class="col-6 text-end">
             <a asp-controller="Category" asp-action="Create" class="btn btn-primary">
-                Create New Category
+               <i class="bi bi-patch-plus"></i> &nbsp; Create New Category
             </a>
         </div>
     </div>
@@ -23,8 +23,8 @@
                 <th>Id</th>
                 <th>Name</th>
                 <th>Display Order</th>
-                <th>Update</th>
-                <th>Delete</th>
+                <th width="10%">Update</th>
+                <th width="10%">Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -34,11 +34,15 @@
                     <td>@m.Id</td>
                     <td>@m.Name</td>
                     <td>@m.DiplayOrder</td>
-                    <td>
-                        <a asp-action="Update" class="btn btn-primary" asp-route-id="@m.Id">Update</a>
+                    <td width="10%">
+                        <a asp-action="Update" class="btn btn-primary" asp-route-id="@m.Id">
+                            <i class="bi bi-pencil-square"></i> &nbsp; Update
+                            </a>
                     </td>
-                    <td>
-                        <a asp-action="Delete" class="btn btn-danger" asp-route-id="@m.Id">Delete</a>
+                    <td width="10%">
+                        <a asp-action="Delete" class="btn btn-danger" asp-route-id="@m.Id">
+                           <i class="bi bi-trash3-fill"></i> &nbsp; Delete
+                            </a>
                     </td>
                 </tr>
             }
