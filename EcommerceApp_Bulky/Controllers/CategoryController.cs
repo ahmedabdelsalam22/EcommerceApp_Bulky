@@ -41,6 +41,7 @@ namespace EcommerceApp_Bulky.Web.Controllers
 
                 await _unitOfWork.categoryRepository.CreateAsync(categoryToDb);
                 await _unitOfWork.Save();
+                TempData["success"] = "Category created successfully!";
                 return RedirectToAction("Index");
             }
             return View(createDto);
@@ -63,6 +64,7 @@ namespace EcommerceApp_Bulky.Web.Controllers
 
                 _unitOfWork.categoryRepository.Update(categoryToDb);
                 await _unitOfWork.Save();
+                TempData["success"] = "Category Updated Successfully!";
                 return RedirectToAction("Index");
             }
             return View(dto);
@@ -73,6 +75,7 @@ namespace EcommerceApp_Bulky.Web.Controllers
             Category category = await _unitOfWork.categoryRepository.GetByIdAsync(filter: x => x.Id == id);
             _unitOfWork.categoryRepository.Remove(category);
             await _unitOfWork.Save();
+            TempData["success"] = "Category Removed Successfully!";
             return RedirectToAction("Index");
         }
     }
