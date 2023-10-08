@@ -20,6 +20,7 @@ namespace Ecommerce_Bulky.Utility
             CreateMap<Category, CategoryUpdateDto>();
 
             CreateMap<Product,ProductDto>();
+            CreateMap<ProductCreateDto, Product>();
         }
     }
 }
