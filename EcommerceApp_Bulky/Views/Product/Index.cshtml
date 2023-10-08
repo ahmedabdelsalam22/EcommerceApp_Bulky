@@ -1,0 +1,69 @@
+﻿@using Ecommerce_Bulky.Models.Dtos;
+@model IEnumerable<ProductDto>
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<div>
+
+
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Product List</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Product" asp-action="Create" class="btn btn-primary">
+                <i class="bi bi-patch-plus"></i> &nbsp; Create New Product
+            </a>
+        </div>
+    </div>
+
+    <br />
+
+    <table class="table table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>ISBN</th>
+                <th>Author</th>
+                <th>ListPrice</th>
+                <th>Price</th>
+                <th>Price50</th>
+                <th>Price100</th>
+                <th width="10%">Update</th>
+                <th width="10%">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var m in Model)
+            {
+                <tr>
+                    <td>@m.Id</td>
+                    <td>@m.Title</td>
+                    <td>@m.Description</td>
+                    <td>@m.ISBN</td>
+                    <td>@m.Author</td>
+                    <td>@m.ListPrice</td>
+                    <td>@m.Price</td>
+                    <td>@m.Price50</td>
+                    <td>@m.Price100</td>
+                    <td width="10%">
+                        <a asp-action="Update" class="btn btn-primary" asp-route-id="@m.Id">
+                            <i class="bi bi-pencil-square"></i> &nbsp; Update
+                        </a>
+                    </td>
+                    <td width="10%">
+                        <a asp-action="Delete" class="btn btn-danger" asp-route-id="@m.Id">
+                            <i class="bi bi-trash3-fill"></i> &nbsp; Delete
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+</div>
