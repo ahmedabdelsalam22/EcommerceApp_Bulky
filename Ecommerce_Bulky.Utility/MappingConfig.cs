@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Ecommerce_Bulky.Models.Dtos;
+using Ecommerce_Bulky.Models.Models;
 using EcommerceApp_Bulky.Models;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,8 @@ namespace Ecommerce_Bulky.Utility
             CreateMap<CategoryCreateDto, Category>();
             CreateMap<CategoryUpdateDto,Category>();
             CreateMap<Category, CategoryUpdateDto>();
+
+            CreateMap<Product,ProductDto>();
         }
     }
 }
