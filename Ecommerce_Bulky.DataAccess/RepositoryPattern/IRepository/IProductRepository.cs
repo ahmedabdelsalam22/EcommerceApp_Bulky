@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ecommerce_Bulky.Models.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,11 +7,8 @@ using System.Threading.Tasks;
 
 namespace Ecommerce_Bulky.DataAccess.RepositoryPattern.IRepository
 {
-    public interface IUnitOfWork
+    public interface IProductRepository : IGenericRepository<Product>
     {
-        ICategoryRepository categoryRepository { get; }
-        IProductRepository productRepository { get; }
-
-        Task Save();
+        void Update(Product product);
     }
 }
