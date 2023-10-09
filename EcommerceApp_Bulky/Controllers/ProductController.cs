@@ -27,13 +27,13 @@ namespace EcommerceApp_Bulky.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult Create() 
+        public IActionResult CreateProduct() 
         {
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(ProductCreateDto createDto) 
+        public async Task<IActionResult> CreateProduct(ProductCreateDto createDto) 
         {
             if (createDto == null) 
             {
@@ -49,6 +49,37 @@ namespace EcommerceApp_Bulky.Web.Controllers
                 return RedirectToAction("Index");
             }
             return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> UpdateProduct(int? id) 
+        {
+            if (id == 0 || id == null) 
+            {
+                ModelState.AddModelError("", "id must not be null or zero!");
+            }
+            Product product = await _unitOfWork.productRepository.GetByIdAsync(filter:x=>x.Id == id);
+
+            ProductUpdateDto productUpdateDto = _mapper.Map<ProductUpdateDto>(product);
+
+            return View(productUpdateDto);
+        }
+        [HttpPost]
+        public async Task<IActionResult> UpdateProduct(ProductUpdateDto updateDto)
+        {
+            if (updateDto == null) 
+            {
+                ModelState.AddModelError("", "fill data!");
+            }
+            if(ModelState.IsValid)
+            {
+                Product productToDb = _mapper.Map<Product>(updateDto);
+                _unitOfWork.productRepository.Update(productToDb);
+                await _unitOfWork.Save();
+                TempData["success"] = "product updated successfully";
+                return RedirectToAction("Index");
+            }
+            return View(updateDto);
         }
     }
 }

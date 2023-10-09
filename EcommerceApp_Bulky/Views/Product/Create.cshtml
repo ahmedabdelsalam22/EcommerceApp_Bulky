@@ -1,0 +1,58 @@
+﻿@using Ecommerce_Bulky.Models.Dtos;
+@model ProductCreateDto
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+<form method="post">
+
+    <div class="m-1">
+        <label asp-for="Title"></label>
+        <input type="text" asp-for="Title" class="form-control" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+    <div class="m-1">
+        <label asp-for="Description"></label>
+        <textarea class="form-control" asp-for="Description" maxlength="2500" rows="4"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+    <div class="m-1">
+        <label asp-for="ISBN"></label>
+        <input type="text" asp-for="ISBN" class="form-control" />
+        <span asp-validation-for="ISBN" class="text-danger"></span>
+    </div>
+    <div class="m-1">
+        <label asp-for="Author"></label>
+        <input type="text" asp-for="Author" class="form-control" />
+        <span asp-validation-for="Author" class="text-danger"></span>
+    </div>
+    <div class="m-1">
+        <label asp-for="ListPrice"></label>
+        <input type="number" asp-for="ListPrice" class="form-control" />
+        <span asp-validation-for="ListPrice" class="text-danger"></span>
+    </div>
+    <div class="m-1">
+        <label asp-for="Price"></label>
+        <input type="number" asp-for="Price" class="form-control" />
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+    <div class="m-1">
+        <label asp-for="Price50"></label>
+        <input type="number" asp-for="Price50" class="form-control" />
+        <span asp-validation-for="Price50" class="text-danger"></span>
+    </div>
+    <div class="m-1">
+        <label asp-for="Price100"></label>
+        <input type="number" asp-for="Price100" class="form-control" />
+        <span asp-validation-for="Price100" class="text-danger"></span>
+    </div>
+    <div class="mt-2 m-1">
+        <button type="submit" asp-action="CreateProduct" class="btn btn-primary">Create</button>
+        <button asp-action="Index" class="btn btn-secondary">Back</button>
+    </div>
+</form>
+
+@section scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

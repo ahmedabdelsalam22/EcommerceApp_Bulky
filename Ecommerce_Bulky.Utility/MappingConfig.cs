@@ -21,6 +21,7 @@ namespace Ecommerce_Bulky.Utility
 
             CreateMap<Product,ProductDto>();
             CreateMap<ProductCreateDto, Product>();
+            CreateMap<ProductUpdateDto,Product>().ReverseMap();
         }
     }
 }
