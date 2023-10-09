@@ -24,17 +24,20 @@ namespace EcommerceApp_Bulky.Web.Controllers
 
             IEnumerable<ProductDto> productDtos = _mapper.Map<List<ProductDto>>(products);
 
-            // display categories
-            //IEnumerable<SelectListItem> selectLists = await _unitOfWork.categoryRepository.GetAllAsync()
-            //    .Select(u=> new SelectListItem{ Text=u.name , Value = u.Id.ToString()});
-
+           
 
             return View(productDtos);
         }
 
         [HttpGet]
-        public IActionResult CreateProduct() 
+        public IActionResult Create() 
         {
+            // display categories
+            IEnumerable<SelectListItem> categoryList = _unitOfWork.categoryRepository.GetAll()
+                .Select(u => new SelectListItem { Text = u.Name, Value = u.Id.ToString() });
+
+            ViewBag.CategoryList = categoryList;
+
             return View();
         }
 
