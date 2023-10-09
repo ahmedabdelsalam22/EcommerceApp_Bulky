@@ -10,6 +10,7 @@ namespace Ecommerce_Bulky.DataAccess.RepositoryPattern.IRepository
     public interface IGenericRepository<T>  where T:class
     {
         Task<IEnumerable<T>> GetAllAsync(bool tracked = true);
+        IEnumerable<T> GetAll(bool tracked = true);
         Task<T> GetByIdAsync(Expression<Func<T,bool>>? filter=null , bool tracked=true);
         Task CreateAsync(T entity);
         void Remove(T entity);

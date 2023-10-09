@@ -33,6 +33,15 @@ namespace Ecommerce_Bulky.DataAccess.RepositoryPattern.Repository
             }
             return await query.ToListAsync();
         }
+        public IEnumerable<T> GetAll(bool tracked = true)
+        {
+            IQueryable<T> query = _dbSet;
+            if (!tracked)
+            {
+                query = query.AsNoTracking();
+            }
+            return query.ToList();
+        }
 
         public async Task<T> GetByIdAsync(Expression<Func<T, bool>>? filter = null, bool tracked = true)
         {
