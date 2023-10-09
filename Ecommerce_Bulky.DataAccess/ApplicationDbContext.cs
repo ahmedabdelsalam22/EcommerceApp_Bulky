@@ -19,8 +19,13 @@ namespace Ecommerce_Bulky.DataAccess
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            base.OnConfiguring(optionsBuilder);
+        }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            
             
             modelBuilder.Entity<Product>().HasData(
                 new Product() { 
@@ -36,7 +41,9 @@ namespace Ecommerce_Bulky.DataAccess
                     ListPrice=99,
                     Price=90,
                     Price50=85,
-                    Price100=80
+                    Price100=80,
+                    CategoryId=23,
+                    ImageUrl=""
                 },
                 new Product()
                 {
@@ -54,7 +61,9 @@ namespace Ecommerce_Bulky.DataAccess
                     ListPrice = 110,
                     Price = 103,
                     Price50 = 98,
-                    Price100 = 89
+                    Price100 = 89,
+                    CategoryId = 24,
+                    ImageUrl=""
                 }
                 );
         }

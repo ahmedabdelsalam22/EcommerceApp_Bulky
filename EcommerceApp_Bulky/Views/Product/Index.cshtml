@@ -30,10 +30,10 @@
                 <th>Description</th>
                 <th>ISBN</th>
                 <th>Author</th>
-                <th>ListPrice</th>
+                @* <th>ListPrice</th> *@
                 <th>Price</th>
-                <th>Price50</th>
-                <th>Price100</th>
+                @* <th>Price50</th>
+                <th>Price100</th> *@
                 <th width="10%">Update</th>
                 <th width="10%">Delete</th>
             </tr>
@@ -51,10 +51,10 @@
                     </td>
                     <td>@m.ISBN</td>
                     <td>@m.Author</td>
-                    <td>@m.ListPrice</td>
+                    @* <td>@m.ListPrice</td> *@
                     <td>@m.Price</td>
-                    <td>@m.Price50</td>
-                    <td>@m.Price100</td>
+                   @*  <td>@m.Price50</td>
+                    <td>@m.Price100</td> *@
                     <td width="10%">
                         <a asp-action="Update" class="btn btn-primary" asp-route-id="@m.Id">
                             <i class="bi bi-pencil-square"></i> &nbsp; Update
