@@ -33,7 +33,7 @@ namespace EcommerceApp_Bulky.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateProduct(ProductCreateDto createDto) 
+        public async Task<IActionResult> Create(ProductCreateDto createDto) 
         {
             if (createDto == null) 
             {
@@ -52,7 +52,7 @@ namespace EcommerceApp_Bulky.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> UpdateProduct(int? id) 
+        public async Task<IActionResult> Update(int? id) 
         {
             if (id == 0 || id == null) 
             {
@@ -65,7 +65,7 @@ namespace EcommerceApp_Bulky.Web.Controllers
             return View(productUpdateDto);
         }
         [HttpPost]
-        public async Task<IActionResult> UpdateProduct(ProductUpdateDto updateDto)
+        public async Task<IActionResult> Update(ProductUpdateDto updateDto)
         {
             if (updateDto == null) 
             {
@@ -82,7 +82,7 @@ namespace EcommerceApp_Bulky.Web.Controllers
             return View(updateDto);
         }
         [HttpDelete]
-        public async Task<IActionResult> DeleteProduct(int? id)
+        public async Task<IActionResult> Delete(int? id)
         {
             if (id == 0 || id == null)
             {
