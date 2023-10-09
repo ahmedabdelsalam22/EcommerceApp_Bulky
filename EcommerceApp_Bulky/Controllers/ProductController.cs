@@ -81,5 +81,19 @@ namespace EcommerceApp_Bulky.Web.Controllers
             }
             return View(updateDto);
         }
+        [HttpDelete]
+        public async Task<IActionResult> DeleteProduct(int? id)
+        {
+            if (id == 0 || id == null)
+            {
+                ModelState.AddModelError("", "id must not be null or zero!");
+            }
+            Product product = await _unitOfWork.productRepository.GetByIdAsync(filter: x => x.Id == id);
+
+            _unitOfWork.productRepository.Remove(product);
+            await _unitOfWork.Save();
+            TempData["success"] = "product removed successfully";
+            return RedirectToAction("Index");
+        }
     }
 }
