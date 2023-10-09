@@ -3,6 +3,7 @@ using Ecommerce_Bulky.DataAccess.RepositoryPattern.IRepository;
 using Ecommerce_Bulky.Models.Dtos;
 using Ecommerce_Bulky.Models.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace EcommerceApp_Bulky.Web.Controllers
 {
@@ -22,6 +23,11 @@ namespace EcommerceApp_Bulky.Web.Controllers
             IEnumerable<Product> products = await _unitOfWork.productRepository.GetAllAsync();
 
             IEnumerable<ProductDto> productDtos = _mapper.Map<List<ProductDto>>(products);
+
+            // display categories
+            //IEnumerable<SelectListItem> selectLists = await _unitOfWork.categoryRepository.GetAllAsync()
+            //    .Select(u=> new SelectListItem{ Text=u.name , Value = u.Id.ToString()});
+
 
             return View(productDtos);
         }
