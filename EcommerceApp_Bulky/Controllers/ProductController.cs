@@ -81,7 +81,6 @@ namespace EcommerceApp_Bulky.Web.Controllers
             }
             return View(updateDto);
         }
-        [HttpDelete]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == 0 || id == null)
