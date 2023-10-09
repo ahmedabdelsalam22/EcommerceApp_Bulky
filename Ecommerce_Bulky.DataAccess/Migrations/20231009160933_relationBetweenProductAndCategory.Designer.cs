@@ -3,6 +3,7 @@ using Ecommerce_Bulky.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Ecommerce_Bulky.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231009160933_relationBetweenProductAndCategory")]
+    partial class relationBetweenProductAndCategory
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -64,10 +67,6 @@ namespace Ecommerce_Bulky.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ImageUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<double>("ListPrice")
                         .HasColumnType("float");
 
@@ -98,7 +97,6 @@ namespace Ecommerce_Bulky.DataAccess.Migrations
                             CategoryId = 23,
                             Description = "Girt was also shortlisted for the 2014 Australian Book Industry Awards (ABIA), the New South Wales Premier's Literary Awards, the Australian Book Design Awards and was the only non-fiction book shortlisted for the ABA Nielsen BookData 2014 Booksellers Choice Award.",
                             ISBN = "5265842",
-                            ImageUrl = "",
                             ListPrice = 99.0,
                             Price = 90.0,
                             Price100 = 80.0,
@@ -112,7 +110,6 @@ namespace Ecommerce_Bulky.DataAccess.Migrations
                             CategoryId = 24,
                             Description = "This is the second book in the Hungry Ciy Chronicles, the first being \"Mortal Engines\". It was a very good sequel to book number 1 which I enjoyed just a bit more, but this was also very good. If you enjoy science ficiton, definitely pick this up. This is a middle-grade book, however. I would put it in the same writing style category as the Percy Jackson books, but with a British tone. Highly enjoyable.",
                             ISBN = "85965874",
-                            ImageUrl = "",
                             ListPrice = 110.0,
                             Price = 103.0,
                             Price100 = 89.0,
