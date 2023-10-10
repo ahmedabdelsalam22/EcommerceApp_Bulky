@@ -2,6 +2,7 @@
 using Ecommerce_Bulky.DataAccess.RepositoryPattern.IRepository;
 using Ecommerce_Bulky.Models.Dtos;
 using Ecommerce_Bulky.Models.Models;
+using EcommerceApp_Bulky.Web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -24,7 +25,6 @@ namespace EcommerceApp_Bulky.Web.Controllers
 
             IEnumerable<ProductDto> productDtos = _mapper.Map<List<ProductDto>>(products);
 
-           
 
             return View(productDtos);
         }
@@ -36,21 +36,27 @@ namespace EcommerceApp_Bulky.Web.Controllers
             IEnumerable<SelectListItem> categoryList = _unitOfWork.categoryRepository.GetAll()
                 .Select(u => new SelectListItem { Text = u.Name, Value = u.Id.ToString() });
 
-            ViewBag.CategoryList = categoryList;
 
-            return View();
+            var productVM = new ProductVM() 
+            { 
+                CategoriesList = categoryList ,
+                ProductcreateDto = new ProductCreateDto()
+            };
+
+
+            return View(productVM);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(ProductCreateDto createDto) 
+        public async Task<IActionResult> Create(ProductVM productVM) 
         {
-            if (createDto == null) 
+            if (productVM.ProductcreateDto == null) 
             {
                 ModelState.AddModelError("","fill data!");
             }
             if (ModelState.IsValid) 
             {
-                Product product = _mapper.Map<Product>(createDto);
+                Product product = _mapper.Map<Product>(productVM.ProductcreateDto);
 
                 await _unitOfWork.productRepository.CreateAsync(product);
                 await _unitOfWork.Save();
