@@ -30,72 +30,70 @@ namespace EcommerceApp_Bulky.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult Create() 
+        public async Task<IActionResult> Upsert(int? id) 
         {
             // display categories
             IEnumerable<SelectListItem> categoryList = _unitOfWork.categoryRepository.GetAll()
                 .Select(u => new SelectListItem { Text = u.Name, Value = u.Id.ToString() });
 
 
-            var productVM = new ProductVM() 
+            var productVm = new ProductVM() 
             { 
                 CategoriesList = categoryList ,
-                ProductcreateDto = new ProductCreateDto()
+                ProductDto = new ProductDto()
             };
 
+            if (id == null || id == 0)
+            {
+                // Create 
+                return View(productVm);
+            }
+            else 
+            {
+                // Update
+                Product product = await _unitOfWork.productRepository.GetByIdAsync(filter: x => x.Id == id);
 
-            return View(productVM);
+                ProductDto productDto = _mapper.Map<ProductDto>(product);
+
+                productVm.ProductDto = productDto;
+
+                return View(productVm);
+            }
+            
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(ProductVM productVM) 
+        public async Task<IActionResult> Upsert(ProductVM productVM, IFormFile? file) 
         {
-            if (productVM.ProductcreateDto == null) 
+            if (productVM.ProductDto.Id == 0 || productVM.ProductDto.Id == null)
             {
-                ModelState.AddModelError("","fill data!");
-            }
-            if (ModelState.IsValid) 
-            {
-                Product product = _mapper.Map<Product>(productVM.ProductcreateDto);
+                if (ModelState.IsValid)
+                {
+                    Product product = _mapper.Map<Product>(productVM.ProductDto);
 
-                await _unitOfWork.productRepository.CreateAsync(product);
-                await _unitOfWork.Save();
-                TempData["success"] = "Product Created Successfully";
-                return RedirectToAction("Index");
+                    await _unitOfWork.productRepository.CreateAsync(product);
+                    await _unitOfWork.Save();
+                    TempData["success"] = "Product Created Successfully";
+                    return RedirectToAction("Index");
+                }
             }
-            return View();
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> Update(int? id) 
-        {
-            if (id == 0 || id == null) 
+            else 
             {
-                ModelState.AddModelError("", "id must not be null or zero!");
-            }
-            Product product = await _unitOfWork.productRepository.GetByIdAsync(filter:x=>x.Id == id);
-
-            ProductUpdateDto productUpdateDto = _mapper.Map<ProductUpdateDto>(product);
-
-            return View(productUpdateDto);
-        }
-        [HttpPost]
-        public async Task<IActionResult> Update(ProductUpdateDto updateDto)
-        {
-            if (updateDto == null) 
-            {
-                ModelState.AddModelError("", "fill data!");
-            }
-            if(ModelState.IsValid)
-            {
-                Product productToDb = _mapper.Map<Product>(updateDto);
+                if (productVM.ProductDto == null) 
+                {
+                    ModelState.AddModelError("", "fill data!");
+                }
+                Product productToDb = _mapper.Map<Product>(productVM.ProductDto);
                 _unitOfWork.productRepository.Update(productToDb);
                 await _unitOfWork.Save();
                 TempData["success"] = "product updated successfully";
                 return RedirectToAction("Index");
             }
-            return View(updateDto);
+
+            return View(productVM.ProductDto);
         }
+
+
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == 0 || id == null)

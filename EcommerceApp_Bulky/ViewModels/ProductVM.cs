@@ -7,7 +7,7 @@ namespace EcommerceApp_Bulky.Web.ViewModels
 {
     public class ProductVM
     {
-        public ProductCreateDto ProductcreateDto { get; set; }
+        public ProductDto ProductDto { get; set; }
         [ValidateNever]
         public IEnumerable<SelectListItem> CategoriesList { get; set; }
 
