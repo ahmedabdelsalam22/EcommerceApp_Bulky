@@ -1,0 +1,67 @@
+﻿@using EcommerceApp_Bulky.Web.ViewModels;
+@model ProductVM
+
+
+
+<form method="post" enctype="multipart/form-data">
+    <input asp-for="@Model.ProductDto.Id" hidden/>
+    <div class="m-1">
+        <label asp-for="@Model.ProductDto.Title"></label>
+        <input type="text" asp-for="@Model.ProductDto.Title" class="form-control" />
+        <span asp-validation-for="@Model.ProductDto.Title" class="text-danger"></span>
+    </div>
+    <div class="m-1">
+        <label asp-for="@Model.ProductDto.Description"></label>
+        <textarea class="form-control" asp-for="@Model.ProductDto.Description" maxlength="2500" rows="4"></textarea>
+        <span asp-validation-for="@Model.ProductDto.Description" class="text-danger"></span>
+    </div>
+    <div class="m-1">
+        <label asp-for="@Model.ProductDto.ISBN"></label>
+        <input type="text" asp-for="@Model.ProductDto.ISBN" class="form-control" />
+        <span asp-validation-for="@Model.ProductDto.ISBN" class="text-danger"></span>
+    </div>
+    <div class="m-1">
+        <label asp-for="@Model.ProductDto.Author"></label>
+        <input type="text" asp-for="@Model.ProductDto.Author" class="form-control" />
+        <span asp-validation-for="@Model.ProductDto.Author" class="text-danger"></span>
+    </div>
+    <div class="m-1">
+        <label asp-for="@Model.ProductDto.ListPrice"></label>
+        <input type="number" asp-for="@Model.ProductDto.ListPrice" class="form-control" />
+        <span asp-validation-for="@Model.ProductDto.ListPrice" class="text-danger"></span>
+    </div>
+    <div class="m-1">
+        <label asp-for="@Model.ProductDto.Price"></label>
+        <input type="number" asp-for="@Model.ProductDto.Price" class="form-control" />
+        <span asp-validation-for="@Model.ProductDto.Price" class="text-danger"></span>
+    </div>
+    <div class="m-1">
+        <label asp-for="@Model.ProductDto.Price50"></label>
+        <input type="number" asp-for="@Model.ProductDto.Price50" class="form-control" />
+        <span asp-validation-for="@Model.ProductDto.Price50" class="text-danger"></span>
+    </div>
+    <div class="m-1">
+        <label asp-for="@Model.ProductDto.Price100"></label>
+        <input type="number" asp-for="@Model.ProductDto.Price100" class="form-control" />
+        <span asp-validation-for="@Model.ProductDto.Price100" class="text-danger"></span>
+    </div>
+    <div class="m-1">
+        <label asp-for="@Model.ProductDto.ImageUrl"></label>
+        <input type="file" class="form-control" />
+    </div>
+    <div class="m-1">
+        <label asp-for="@Model.ProductDto.CategoryId"></label>
+        <select asp-for="@Model.ProductDto.CategoryId" asp-items="@Model.CategoriesList">
+            <option disabled selected>--Select Category--</option>
+        </select>
+        <span asp-validation-for="@Model.ProductDto.CategoryId" class="text-danger"></span>
+    </div>
+    <div class="mt-2 m-1">
+        <button type="submit" asp-action="Create" class="btn btn-primary">Create</button>
+        <button asp-action="Index" class="btn btn-secondary">Back</button>
+    </div>
+</form>
+
+@section scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
